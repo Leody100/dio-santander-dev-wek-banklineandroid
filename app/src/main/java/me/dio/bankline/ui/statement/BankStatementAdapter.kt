@@ -1,4 +1,4 @@
-package me.dio.bankline.ui.adapters
+package me.dio.bankline.ui.statement
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +11,8 @@ import me.dio.bankline.domain.TipoMovimentacao
 /**
  * Reference: https://developer.android.com/guide/topics/ui/layout/recyclerview?hl=pt-br#kotlin
  */
-class BankStatementAdapter(private val dataSet: List<Movimentacao>) : RecyclerView.Adapter<BankStatementAdapter.ViewHolder>() {
+class BankStatementAdapter(private val dataSet: List<Movimentacao>) :
+    RecyclerView.Adapter<BankStatementAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: BankStatementItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -20,7 +21,8 @@ class BankStatementAdapter(private val dataSet: List<Movimentacao>) : RecyclerVi
             tvDescription.text = item.descricao
             tvValue.text = item.valor.toString()
             tvDatetime.text = item.dataHora
-            val typeIcon = if(TipoMovimentacao.RECEITA == item.tipo) R.drawable.ic_money_in else R.drawable.ic_money_out
+            val typeIcon =
+                if (TipoMovimentacao.RECEITA == item.tipo) R.drawable.ic_money_in else R.drawable.ic_money_out
             ivIcon.setImageResource(typeIcon)
         }
     }

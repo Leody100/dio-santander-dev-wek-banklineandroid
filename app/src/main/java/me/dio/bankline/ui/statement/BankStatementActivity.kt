@@ -1,19 +1,13 @@
 package me.dio.bankline.ui.statement
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import me.dio.bankline.R
 import me.dio.bankline.data.State
 import me.dio.bankline.databinding.ActivityBankStatementBinding
 import me.dio.bankline.domain.Correntista
-import me.dio.bankline.domain.Movimentacao
-import me.dio.bankline.domain.TipoMovimentacao
-import me.dio.bankline.ui.adapters.BankStatementAdapter
 
 class BankStatementActivity : AppCompatActivity() {
 
@@ -48,13 +42,14 @@ class BankStatementActivity : AppCompatActivity() {
                     binding.srlBankStatement.isRefreshing = false
                 }
                 is State.Error -> {
-                    state.menssage?.let {
+                    state.message?.let {
                         Snackbar.make(
                             binding.rvBankStatement,
                             it,
                             Snackbar.LENGTH_LONG
                         ).show()
                     }
+                    binding.srlBankStatement.isRefreshing = false
                 }
                 State.Wait -> binding.srlBankStatement.isRefreshing = true
             }
